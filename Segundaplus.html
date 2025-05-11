@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segunda Plus - Tu Viaje Comienza Aquí</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Fondo gris claro */
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita scroll horizontal */
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px; /* Ancho máximo del sitio */
+            margin: 0 auto;
+            padding: 0 15px; /* Espacio lateral */
+        }
+
+        /* Cabecera (Header) */
+        header {
+            background-color: #ffffff; /* Fondo blanco */
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+        }
+
+        .site-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #e74c3c; /* Rojo para un toque distintivo */
+            text-decoration: none;
+        }
+
+        .site-title:hover {
+            color: #c0392b; /* Rojo más oscuro al pasar el mouse */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #e74c3c; /* Rojo al pasar el mouse */
+        }
+
+        /* Sección Hero (Imagen Principal y Formulario de Búsqueda) */
+        .hero-section {
+            position: relative; /* Necesario para posicionar el formulario encima */
+            height: 450px; /* Altura ajustada del hero */
+            background-image: url('https://images.pexels.com/photos/1339760/pexels-photo-1339760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Imagen de autobús demo */
+            background-size: cover; /* Cubre todo el área */
+            background-position: center; /* Centra la imagen */
+            display: flex;
+            align-items: center; /* Centra verticalmente el contenido */
+            justify-content: center; /* Centra horizontalmente el contenido */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para el texto */
+            margin-bottom: 30px; /* Espacio debajo del hero */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4); /* Capa semitransparente oscura */
+            z-index: 1; /* Asegura que esté detrás del contenido */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Asegura que esté encima de la capa oscura */
+            text-align: center;
+            padding: 0 15px; /* Espacio interior */
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .search-form {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            flex-wrap: wrap; /* Permite que los campos se envuelvan */
+            gap: 15px; /* Espacio entre campos */
+            justify-content: center;
+            margin-top: 20px; /* Espacio entre el texto del hero y el formulario */
+            max-width: 800px; /* Ancho máximo del formulario */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px; /* Ancho mínimo para los campos */
+            flex-grow: 1; /* Permite que los campos crezcan */
+        }
+
+        .form-group label {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            color: #333;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            width: 100%; /* Ocupa todo el ancho del contenedor flex */
+            box-sizing: border-box; /* Incluye padding y borde en el tamaño */
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #27ae60; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: flex-end; /* Alinea el botón abajo si los campos son más altos */
+            flex-grow: 0; /* No permite que el botón crezca */
+        }
+
+        .search-button:hover {
+            background-color: #229954; /* Verde más oscuro */
+        }
+
+
+        /* Sección de Destinos Populares */
+        .destinations-section {
+            padding: 40px 0;
+            text-align: center;
+            background-color: #ffffff; /* Fondo blanco */
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .destinations-section h2 {
+            font-size: 2em;
+            color: #0056b3; /* Azul */
+            margin-bottom: 30px;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas responsivas */
+            gap: 20px; /* Espacio entre items */
+            justify-content: center;
+        }
+
+        .destination-item {
+            border-radius: 8px;
+            overflow: hidden; /* Oculta partes de la imagen que se salgan */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+            background-color: #f9f9f9;
+        }
+
+        .destination-item img {
+            width: 100%;
+            height: 150px; /* Altura fija para las imágenes de destino */
+            object-fit: cover; /* Cubre el área sin distorsionarse */
+            transition: transform 0.3s ease;
+        }
+
+        .destination-item img:hover {
+            transform: scale(1.05); /* Zoom ligero al pasar el mouse */
+        }
+
+        .destination-info {
+            padding: 15px;
+        }
+
+        .destination-info h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .destination-info p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .destination-info a {
+            display: inline-block;
+            color: #e74c3c; /* Rojo */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .destination-info a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Sección de Características Adicionales (Asientos, Seguro) */
+         .features-section {
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 30px;
+         }
+
+         .features-section h2 {
+            font-size: 2em;
+            color: #0056b3; /* Azul */
+            margin-bottom: 30px;
+         }
+
+         .feature-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+         }
+
+         .feature-item {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 300px; /* Ancho máximo */
+            text-align: left;
+         }
+
+         .feature-item h3 {
+            color: #27ae60; /* Verde */
+            margin-top: 0;
+            margin-bottom: 10px;
+         }
+
+         .feature-item p {
+            font-size: 0.9em;
+            color: #666;
+         }
+
+         /* Sección de Métodos de Pago */
+         .payment-section {
+            padding: 20px 0;
+            text-align: center;
+            background-color: #ecf0f1; /* Gris claro */
+            margin-bottom: 30px;
+         }
+
+         .payment-section h2 {
+             font-size: 1.8em;
+             color: #0056b3;
+             margin-bottom: 20px;
+         }
+
+         .payment-icons img {
+             height: 40px; /* Tamaño de los iconos de tarjeta */
+             margin: 0 10px; /* Espacio entre iconos */
+             vertical-align: middle; /* Alinea iconos */
+         }
+
+
+        /* Pie de Página (Footer) */
+        footer {
+            background-color: #333; /* Fondo gris oscuro */
+            color: #f4f4f4; /* Texto gris claro */
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 0; /* Elimina el margen superior si la última sección ya tiene margin-bottom */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #f4f4f4;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            .hero-section {
+                height: 350px; /* Altura reducida en móvil */
+            }
+
+            .hero-content h1 {
+                font-size: 2em;
+            }
+
+            .hero-content p {
+                font-size: 1em;
+            }
+
+            .search-form {
+                flex-direction: column; /* Apila los campos del formulario */
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .form-group {
+                 min-width: 100%; /* Campos ocupan todo el ancho */
+            }
+
+            .search-button {
+                align-self: stretch; /* El botón ocupa todo el ancho */
+            }
+
+            .destinations-section,
+            .services-section,
+            .features-section,
+            .payment-section {
+                padding: 20px 0;
+            }
+
+            .destinations-section h2,
+            .services-section h2,
+            .features-section h2,
+            .payment-section h2 {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+
+             .destination-grid,
+             .service-items,
+             .feature-items {
+                gap: 20px;
+             }
+
+             .destination-item img {
+                height: 120px; /* Altura ajustada para imágenes de destino en móvil */
+             }
+
+             .payment-icons img {
+                 height: 30px; /* Tamaño de iconos de tarjeta en móvil */
+                 margin: 0 5px;
+             }
+        }
+
+        /* --- Estilos para los Modales (General) --- */
+        .modal-overlay {
+            position: fixed; /* Posición fija para cubrir toda la pantalla */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Asegura que esté por encima de todo */
+            visibility: hidden; /* Oculto por defecto */
+            opacity: 0; /* Transparente por defecto */
+            transition: opacity 0.3s ease; /* Transición suave */
+        }
+
+        .modal-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            max-width: 600px; /* Ancho máximo del modal */
+            width: 90%;
+            position: relative; /* Para posicionar el botón de cerrar */
+            text-align: left; /* Alinea el texto dentro del modal a la izquierda */
+            max-height: 90vh; /* Altura máxima para el modal */
+            overflow-y: auto; /* Añade scroll si el contenido es muy largo */
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #777;
+        }
+
+        /* --- Estilos del Contenedor del Autobús y Mapa de Asientos --- */
+        .bus-container {
+            border: 2px solid #555; /* Borde para simular el contorno del autobús */
+            border-radius: 15px; /* Bordes redondeados */
+            padding: 20px; /* Espacio interior */
+            background-color: #f9f9f9; /* Fondo claro dentro del autobús */
+            margin: 20px auto; /* Centra el contenedor del autobús */
+            max-width: 300px; /* Ancho máximo del "autobús" */
+            position: relative; /* Para posicionar las etiquetas de frente/atrás */
+        }
+
+        .bus-label {
+            position: absolute;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .label-front {
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%); /* Centra horizontalmente */
+        }
+
+         .label-back {
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%); /* Centra horizontalmente */
+        }
+
+        .seat-map {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columnas para el diseño típico de autobús */
+            gap: 8px; /* Espacio entre asientos */
+            justify-items: center; /* Centra los items en la celda */
+            margin-top: 20px; /* Espacio debajo de la etiqueta "Enfrente" */
+            margin-bottom: 20px; /* Espacio encima de la etiqueta "Atrás" */
+        }
+
+        .seat {
+            width: 40px; /* Tamaño del asiento */
+            height: 40px;
+            background-color: #2ecc71; /* Verde para asiento disponible */
+            border: 1px solid #27ae60;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .seat:hover {
+            transform: scale(1.05); /* Ligero zoom al pasar el mouse */
+        }
+
+        .seat.occupied {
+            background-color: #e74c3c; /* Rojo para asiento ocupado */
+            border-color: #c0392b;
+            cursor: not-allowed; /* Cursor de no permitido */
+        }
+
+        .seat.occupied:hover {
+            transform: none; /* Sin zoom en asientos ocupados */
+        }
+
+        .seat.selected {
+            background-color: #f1c40f; /* Amarillo/Naranja para asiento seleccionado */
+            border-color: #e67e22;
+        }
+
+        /* Espacio para el pasillo */
+        .seat-map .aisle {
+            visibility: hidden; /* Oculta la celda pero mantiene el espacio */
+            width: 40px; /* Mantener un ancho similar al asiento */
+            height: 40px; /* Mantener una altura similar al asiento */
+        }
+
+        /* Leyenda del mapa de asientos */
+        .seat-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .color-available { background-color: #2ecc71; border: 1px solid #27ae60;}
+        .color-occupied { background-color: #e74c3c; border: 1px solid #c0392b;}
+        .color-selected { background-color: #f1c40f; border: 1px solid #e67e22;}
+
+        .selected-seat-info {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+            text-align: center; /* Centra la información del asiento seleccionado */
+        }
+
+        .confirm-seat-button {
+            display: block; /* Botón de bloque */
+            width: 100%; /* Ocupa todo el ancho */
+            padding: 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .confirm-seat-button:hover {
+            background-color: #229954;
+        }
+
+        /* Media Queries para el Modal */
+        @media (max-width: 600px) {
+            .modal-content {
+                padding: 20px;
+                width: 95%; /* Ocupa más ancho en pantallas pequeñas */
+            }
+            .modal-content h3 {
+                font-size: 1.5em;
+            }
+            .bus-container {
+                padding: 15px;
+            }
+            .seat-map {
+                grid-template-columns: repeat(4, 1fr); /* Mantiene 4 columnas si es posible */
+                gap: 6px; /* Espacio reducido */
+            }
+            .seat {
+                width: 30px; /* Tamaño reducido */
+                height: 30px;
+                font-size: 0.7em;
+            }
+             .seat-map .aisle {
+                 width: 30px; /* Ajustar tamaño del pasillo */
+                 height: 30px;
+             }
+             .seat-legend {
+                flex-direction: column; /* Apila la leyenda */
+                gap: 10px;
+                align-items: flex-start;
+             }
+             .legend-item {
+                 font-size: 0.8em;
+             }
+             .legend-color {
+                 width: 15px;
+                 height: 15px;
+             }
+             .selected-seat-info {
+                 font-size: 0.9em;
+             }
+             .confirm-seat-button {
+                 font-size: 1em;
+             }
+             .bus-label {
+                 font-size: 0.8em; /* Tamaño reducido para etiquetas */
+             }
+        }
+
+        /* --- Estilos para el Splash Screen --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff; /* Fondo blanco */
+            display: flex;
+            flex-direction: column; /* Apila la imagen y texto */
+            justify-content: center;
+            align-items: center;
+            z-index: 1001; /* Mayor que el modal para estar encima */
+            transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+        }
+
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #splash-screen img {
+            max-width: 80%; /* Tamaño máximo de la imagen */
+            max-height: 80%;
+            height: auto;
+            margin-bottom: 20px; /* Espacio debajo de la imagen */
+        }
+
+        #splash-screen p {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+         /* Estilo para el texto "La Junermo" en el modal de asientos */
+         .junermo-text {
+             text-align: center;
+             font-size: 1.1em;
+             font-weight: bold;
+             color: #555;
+             margin-bottom: 15px; /* Espacio debajo del texto */
+         }
+
+         /* --- Estilos para el Modal de Detalles de Viaje --- */
+         #tripDetailsModalOverlay {
+             z-index: 1002; /* Mayor que el modal de asientos */
+         }
+
+         #tripDetailsModalContent h3 {
+             color: #e74c3c; /* Rojo */
+         }
+
+         .trip-details-list {
+             list-style: none;
+             padding: 0;
+             margin: 20px 0;
+             font-size: 1.1em;
+         }
+
+         .trip-details-list li {
+             margin-bottom: 10px;
+             padding-bottom: 5px;
+             border-bottom: 1px dashed #eee;
+         }
+
+         .trip-details-list li strong {
+             color: #0056b3; /* Azul */
+             margin-right: 5px;
+         }
+
+         .purchase-button {
+            display: block; /* Botón de bloque */
+            width: 100%; /* Ocupa todo el ancho */
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+         }
+
+         .purchase-button:hover {
+             background-color: #229954;
+         }
+
+         /* --- Estilos para el Modal de Pago --- */
+         #paymentModalOverlay {
+              z-index: 1003; /* Mayor que el modal de detalles */
+         }
+
+         #paymentModalContent h3 {
+             color: #e74c3c; /* Rojo */
+         }
+
+         .payment-summary {
+             margin-bottom: 20px;
+             padding: 15px;
+             background-color: #f9f9f9;
+             border-radius: 4px;
+             border: 1px solid #eee;
+         }
+
+         .payment-summary p {
+             margin: 5px 0;
+             font-size: 1em;
+             color: #555;
+         }
+
+         .payment-form .form-group {
+             margin-bottom: 15px;
+         }
+
+         .payment-form label {
+             display: block; /* Etiqueta en su propia línea */
+             margin-bottom: 5px;
+             font-weight: bold;
+             color: #333;
+             font-size: 0.9em;
+         }
+
+         .payment-form input[type="text"],
+         .payment-form input[type="month"],
+         .payment-form input[type="number"],
+         .payment-form input[type="password"] { /* Usamos type="password" para CVV por seguridad visual */
+             padding: 10px;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+             font-size: 1em;
+             width: 100%;
+             box-sizing: border-box;
+         }
+
+         .payment-form .form-row {
+             display: flex;
+             gap: 15px;
+         }
+
+         .payment-form .form-row .form-group {
+             flex: 1; /* Ocupa el espacio disponible */
+             margin-bottom: 0; /* Elimina el margen inferior en los grupos de la fila */
+         }
+
+         .pay-button {
+            display: block; /* Botón de bloque */
+            width: 100%; /* Ocupa todo el ancho */
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+         }
+
+         .pay-button:hover {
+             background-color: #229954;
+         }
+
+         /* --- Estilos para el Modal de Confirmación --- */
+         #confirmationModalOverlay {
+              z-index: 1004; /* Mayor que el modal de pago */
+         }
+
+         #confirmationModalContent {
+             text-align: center; /* Centra el contenido del modal de confirmación */
+         }
+
+         #confirmationModalContent h3 {
+             color: #2ecc71; /* Verde para felicitación */
+             border-bottom: none;
+             padding-bottom: 0;
+             margin-bottom: 20px;
+             font-size: 2em;
+         }
+
+         #confirmationModalContent p {
+             font-size: 1.1em;
+             color: #555;
+             margin-bottom: 30px;
+         }
+
+         .confirmation-buttons {
+             display: flex;
+             flex-direction: column; /* Apila los botones */
+             gap: 15px; /* Espacio entre botones */
+             max-width: 300px; /* Ancho máximo para los botones apilados */
+             margin: 0 auto; /* Centra los botones */
+         }
+
+         .confirmation-button {
+            display: block; /* Botón de bloque */
+            width: 100%; /* Ocupa todo el ancho del contenedor flex */
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+         }
+
+         .button-download {
+             background-color: #3498db; /* Azul */
+             color: white;
+         }
+
+         .button-download:hover {
+             background-color: #2980b9; /* Azul oscuro */
+         }
+
+         .button-email {
+             background-color: #f1c40f; /* Amarillo/Naranja */
+             color: #333; /* Texto oscuro */
+         }
+
+         .button-email:hover {
+             background-color: #e67e22; /* Naranja oscuro */
+         }
+
+         .button-close-confirm {
+             background-color: #bdc3c7; /* Gris */
+             color: #333;
+         }
+
+         .button-close-confirm:hover {
+             background-color: #95a5a6; /* Gris oscuro */
+         }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        [Image of Blue and white passenger bus]
+        <p>Cargando Segunda Plus...</p>
+    </div>
+
+    <div id="main-content" style="visibility: hidden;">
+        <header>
+            <div class="container header-content">
+                <a href="#" class="site-title">Segunda Plus</a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Destinos</a></li>
+                        <li><a href="#">Servicios</a></li>
+                        <li><a href="#">Boletos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Viaja Cómodo y Seguro</h1>
+                <p>Encuentra tu próximo destino con Segunda Plus</p>
+
+                <div class="search-form">
+                    <div class="form-group">
+                        <label for="origin">Origen:</label>
+                        <input type="text" id="origin" name="origin" placeholder="Ej. Ciudad de México">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destino:</label>
+                        <input type="text" id="destination" name="destination" placeholder="Ej. Guadalajara">
+                    </div>
+                     <div class="form-group">
+                        <label for="date">Fecha:</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                     <div class="form-group">
+                        <label for="passengers">Pasajeros:</label>
+                        <select id="passengers" name="passengers">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <button type="button" class="search-button" id="searchButton">Buscar Viaje</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="destinations-section">
+            <div class="container">
+                <h2>Destinos Populares en México</h2>
+                <div class="destination-grid">
+                    <div class="destination-item">
+                        [Image of Colorful street in Guanajuato, Mexico]
+                        <div class="destination-info">
+                            <h3>Guanajuato</h3>
+                            <p>Ciudad colonial llena de historia y color.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of Beach in Cancun, Mexico]
+                        <div class="destination-info">
+                            <h3>Cancún</h3>
+                            <p>Playas paradisíacas y vida nocturna.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of Teotihuacan pyramids near Mexico City]
+                        <div class="destination-info">
+                            <h3>Ciudad de México</h3>
+                            <p>Capital vibrante con museos y sitios arqueológicos.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of Historic center of Oaxaca, Mexico]
+                        <div class="destination-info">
+                            <h3>Oaxaca</h3>
+                            <p>Cultura, gastronomía y tradiciones únicas.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of Guadalajara Cathedral]
+                        <div class="destination-info">
+                            <h3>Guadalajara</h3>
+                            <p>Cuna del mariachi y el tequila.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of San Miguel de Allende street]
+                        <div class="destination-info">
+                            <h3>San Miguel de Allende</h3>
+                            <p>Encanto colonial y ambiente artístico.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of Puebla Cathedral, Mexico]
+                        <div class="destination-info">
+                            <h3>Puebla</h3>
+                            <p>Rica historia, arquitectura y gastronomía.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        [Image of Historic center of Mérida, Mexico]
+                        <div class="destination-info">
+                            <h3>Mérida</h3>
+                            <p>La Ciudad Blanca, cultura maya y tranquilidad.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        [Image of Beach in Puerto Vallarta, Mexico]
+                        <div class="destination-info">
+                            <h3>Puerto Vallarta</h3>
+                            <p>Playas del Pacífico y encanto tradicional.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of Monterrey skyline, Mexico]
+                        <div class="destination-info">
+                            <h3>Monterrey</h3>
+                            <p>Centro industrial y belleza natural de la Sierra Madre.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                     <div class="destination-item">
+                        [Image of Historic center of Zacatecas, Mexico]
+                        <div class="destination-info">
+                            <h3>Zacatecas</h3>
+                            <p>Ciudad minera con arquitectura barroca.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        [Image of Historic center of Querétaro, Mexico]
+                        <div class="destination-info">
+                            <h3>Querétaro</h3>
+                            <p>Historia, acueductos y viñedos cercanos.</p>
+                            <a href="#">Ver rutas</a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+
+        <section class="features-section">
+            <div class="container">
+                <h2>Beneficios Adicionales</h2>
+                <div class="feature-items">
+                    <div class="feature-item">
+                        <h3>Selecciona Tu Asiento</h3>
+                        <p>Elige el lugar que prefieras en el autobús al comprar tu boleto para viajar más cómodo.</p>
+                        [Image of Bus seat map icon]
+                    </div>
+                     <div class="feature-item">
+                        <h3>Seguro de Viajero</h3>
+                        <p>Viaja con tranquilidad. Añade un seguro de viajero a tu compra para estar protegido.</p>
+                        [Image of Travel insurance icon]
+                    </div>
+                     <div class="feature-item">
+                        <h3>Pagos Seguros</h3>
+                        <p>Tu información está protegida. Realiza tus pagos con confianza.</p>
+                         [Image of Secure payment icon]
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section class="payment-section">
+            <div class="container">
+                <h2>Aceptamos Pagos Con</h2>
+                <div class="payment-icons">
+                    <img src="https://cdn.jsdelivr.net/npm/@primer/octicons@19.8.0/icons/credit-card-16.svg" alt="Visa"> <img src="https://cdn.jsdelivr.net/npm/@primer/octicons@19.8.0/icons/credit-card-16.svg" alt="Mastercard"> <img src="https://cdn.jsdelivr.net/npm/@primer/octicons@19.8.0/icons/credit-card-16.svg" alt="American Express"> <img src="https://cdn.jsdelivr.net/npm/@primer/octicons@19.8.0/icons/credit-card-16.svg" alt="PayPal"> </div>
+            </div>
+        </section>
+
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 Segunda Plus. Todos los derechos reservados.</p>
+                <p><a href="#">Aviso de Privacidad</a> | <a href="#">Términos y Condiciones</a> | <a href="#">Contacto</a></p>
+            </div>
+        </footer>
+    </div>
+
+
+    <div class="modal-overlay" id="seatModalOverlay">
+        <div class="modal-content">
+            <span class="close-button" id="closeModalButton">&times;</span>
+            <h3>Selecciona Tu Asiento</h3>
+
+            <div class="junermo-text">La Junermo</div>
+
+            <div class="seat-legend">
+                <div class="legend-item">
+                    <span class="legend-color color-available"></span> Disponible
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color color-occupied"></span> Ocupado
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color color-selected"></span> Seleccionado
+                </div>
+            </div>
+
+            <div class="bus-container">
+                <div class="bus-label label-front">Enfrente Volante de Conductor</div>
+                 <div class="bus-label label-back">Atrás WC</div>
+                <div class="seat-map" id="seatMap">
+                    </div>
+            </div>
+
+
+            <div class="selected-seat-info">
+                Asiento seleccionado: <span id="selectedSeatDisplay">-</span>
+            </div>
+
+            <button class="confirm-seat-button" id="confirmSeatButton">Confirmar Asiento</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="tripDetailsModalOverlay">
+        <div class="modal-content" id="tripDetailsModalContent">
+            <span class="close-button" id="closeTripDetailsModalButton">&times;</span>
+            <h3>Detalles de Tu Viaje</h3>
+
+            <ul class="trip-details-list">
+                <li><strong>Origen:</strong> <span id="detailOrigin"></span></li>
+                <li><strong>Destino:</strong> <span id="detailDestination"></span></li>
+                <li><strong>Fecha:</strong> <span id="detailDate"></span></li>
+                <li><strong>Pasajeros:</strong> <span id="detailPassengers"></span></li>
+                <li><strong>Asiento Seleccionado:</strong> <span id="detailSeat"></span></li>
+            </ul>
+
+            <button class="purchase-button" id="purchaseButton">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="paymentModalOverlay">
+        <div class="modal-content" id="paymentModalContent">
+            <span class="close-button" id="closePaymentModalButton">&times;</span>
+            <h3>Información de Pago</h3>
+
+            <div class="payment-summary">
+                <h4>Resumen del Viaje</h4>
+                <p><strong>Origen:</strong> <span id="paymentSummaryOrigin"></span></p>
+                <p><strong>Destino:</strong> <span id="paymentSummaryDestination"></span></p>
+                <p><strong>Fecha:</strong> <span id="paymentSummaryDate"></span></p>
+                <p><strong>Pasajeros:</strong> <span id="paymentSummaryPassengers"></span></p>
+                <p><strong>Asiento:</strong> <span id="paymentSummarySeat"></span></p>
+            </div>
+
+            <div class="payment-form">
+                <div class="form-group">
+                    <label for="cardNumber">Número de Tarjeta:</label>
+                    <input type="text" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+                </div>
+                 <div class="form-group">
+                    <label for="cardName">Nombre en la Tarjeta:</label>
+                    <input type="text" id="cardName" placeholder="Como aparece en la tarjeta">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cardExpiry">Fecha de Vencimiento:</label>
+                        <input type="month" id="cardExpiry" placeholder="MM/AA">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardCVV">CVV:</label>
+                        <input type="password" id="cardCVV" placeholder="XXX" maxlength="4">
+                    </div>
+                </div>
+            </div>
+
+            <button class="pay-button" id="payButton">Pagar Ahora</button>
+        </div>
+    </div>
+
+     <div class="modal-overlay" id="confirmationModalOverlay">
+        <div class="modal-content" id="confirmationModalContent">
+            <span class="close-button" id="closeConfirmationModalButton">&times;</span>
+            <h3>¡Felicidades!</h3>
+            <p>Tu compra ha sido exitosa.</p>
+
+            <div class="confirmation-buttons">
+                <button class="confirmation-button button-download" id="downloadTicketButton">Descargar Boleto</button>
+                <button class="confirmation-button button-email" id="emailTicketButton">Enviar a Correo</button>
+                <button class="confirmation-button button-close-confirm" id="closeConfirmationButton">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Obtener referencias a los elementos del DOM
+        const searchButton = document.getElementById('searchButton');
+        const seatModalOverlay = document.getElementById('seatModalOverlay');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const seatMap = document.getElementById('seatMap');
+        const selectedSeatDisplay = document.getElementById('selectedSeatDisplay');
+        const confirmSeatButton = document.getElementById('confirmSeatButton');
+        const splashScreen = document.getElementById('splash-screen');
+        const mainContent = document.getElementById('main-content');
+
+        // Referencias para el modal de detalles de viaje
+        const tripDetailsModalOverlay = document.getElementById('tripDetailsModalOverlay');
+        const closeTripDetailsModalButton = document.getElementById('closeTripDetailsModalButton');
+        const detailOrigin = document.getElementById('detailOrigin');
+        const detailDestination = document.getElementById('detailDestination');
+        const detailDate = document.getElementById('detailDate');
+        const detailPassengers = document.getElementById('detailPassengers');
+        const detailSeat = document.getElementById('detailSeat');
+        const purchaseButton = document.getElementById('purchaseButton'); // Botón de "Proceder al Pago"
+
+        // Referencias para el modal de pago
+        const paymentModalOverlay = document.getElementById('paymentModalOverlay');
+        const closePaymentModalButton = document.getElementById('closePaymentModalButton');
+        const paymentSummaryOrigin = document.getElementById('paymentSummaryOrigin');
+        const paymentSummaryDestination = document.getElementById('paymentSummaryDestination');
+        const paymentSummaryDate = document.getElementById('paymentSummaryDate');
+        const paymentSummaryPassengers = document.getElementById('paymentSummaryPassengers');
+        const paymentSummarySeat = document.getElementById('paymentSummarySeat');
+        const payButton = document.getElementById('payButton'); // Botón de "Pagar Ahora"
+
+         // Referencias para el nuevo modal de confirmación
+        const confirmationModalOverlay = document.getElementById('confirmationModalOverlay');
+        const closeConfirmationModalButton = document.getElementById('closeConfirmationModalButton');
+        const downloadTicketButton = document.getElementById('downloadTicketButton');
+        const emailTicketButton = document.getElementById('emailTicketButton');
+        const closeConfirmationButton = document.getElementById('closeConfirmationButton');
+
+
+        // Referencias a los campos del formulario de búsqueda
+        const originInput = document.getElementById('origin');
+        const destinationInput = document.getElementById('destination');
+        const dateInput = document.getElementById('date');
+        const passengersSelect = document.getElementById('passengers');
+
+
+        let selectedSeat = null; // Variable para almacenar el asiento seleccionado
+        let currentTripDetails = {}; // Objeto para almacenar los detalles del viaje
+
+
+        // --- Lógica del Splash Screen ---
+        window.addEventListener('load', function() {
+            // Ocultar el splash screen y mostrar el contenido principal después de un retraso
+            setTimeout(function() {
+                splashScreen.classList.add('hidden');
+                mainContent.style.visibility = 'visible'; // Mostrar el contenido principal
+            }, 2000); // 2000 milisegundos = 2 segundos de duración del splash
+        });
+
+
+        // --- Funciones de los Modales ---
+        function showSeatModal() {
+            seatModalOverlay.classList.add('visible');
+            generateSeatMap(); // Genera el mapa de asientos cada vez que se abre el modal
+        }
+
+        function hideSeatModal() {
+            seatModalOverlay.classList.remove('visible');
+            // Limpiar selección al cerrar el modal
+            if (selectedSeat) {
+                selectedSeat.classList.remove('selected');
+                selectedSeat = null;
+                selectedSeatDisplay.textContent = '-';
+            }
+             // Limpiar el mapa de asientos del modal
+            seatMap.innerHTML = '';
+        }
+
+        function showTripDetailsModal(details) {
+            // Poblar el modal con los detalles
+            detailOrigin.textContent = details.origin;
+            detailDestination.textContent = details.destination;
+            detailDate.textContent = details.date;
+            detailPassengers.textContent = details.passengers;
+            detailSeat.textContent = details.seat;
+
+            // Mostrar el modal
+            tripDetailsModalOverlay.classList.add('visible');
+        }
+
+        function hideTripDetailsModal() {
+            tripDetailsModalOverlay.classList.remove('visible');
+        }
+
+         function showPaymentModal(details) {
+             // Poblar el resumen de pago con los detalles del viaje
+             paymentSummaryOrigin.textContent = details.origin;
+             paymentSummaryDestination.textContent = details.destination;
+             paymentSummaryDate.textContent = details.date;
+             paymentSummaryPassengers.textContent = details.passengers;
+             paymentSummarySeat.textContent = details.seat;
+
+             // Mostrar el modal de pago
+             paymentModalOverlay.classList.add('visible');
+         }
+
+         function hidePaymentModal() {
+             paymentModalOverlay.classList.remove('visible');
+             // Opcional: Limpiar campos del formulario de pago al cerrar
+             document.getElementById('cardNumber').value = '';
+             document.getElementById('cardName').value = '';
+             document.getElementById('cardExpiry').value = '';
+             document.getElementById('cardCVV').value = '';
+         }
+
+         function showConfirmationModal() {
+             confirmationModalOverlay.classList.add('visible');
+         }
+
+         function hideConfirmationModal() {
+             confirmationModalOverlay.classList.remove('visible');
+         }
+
+
+        // --- Lógica de Selección de Asientos ---
+
+        // Función para generar un mapa de asientos simple
+        function generateSeatMap() {
+            seatMap.innerHTML = ''; // Limpiar mapa existente
+            const totalSeats = 36; // Número total de asientos
+            // Ejemplo: asientos ocupados (números de asiento)
+            const occupiedSeats = [3, 7, 12, 18, 25, 30, 31, 32];
+
+            // Simulación de la distribución en filas y columnas
+            const seatsPerRow = 4; // 2 asientos, pasillo, 2 asientos
+            const visualSeatsPerRow = seatsPerRow; // Incluye el espacio del pasillo
+
+            let currentSeatNumber = 1;
+            let gridCellCount = 0;
+
+            // Generar celdas hasta que se alcance el número total de asientos
+             while (currentSeatNumber <= totalSeats) {
+                for (let col = 0; col < visualSeatsPerRow; col++) {
+                     // Simular el pasillo en la tercera columna (índice 2)
+                    if (col === 2) {
+                        const aisleElement = document.createElement('div');
+                        aisleElement.classList.add('aisle');
+                        seatMap.appendChild(aisleElement);
+                    } else {
+                        // Crear un asiento solo si aún no hemos alcanzado el total de asientos
+                        if (currentSeatNumber <= totalSeats) {
+                            const seatElement = document.createElement('div');
+                            seatElement.classList.add('seat');
+                            seatElement.textContent = currentSeatNumber; // Mostrar el número del asiento
+                            seatElement.dataset.seatNumber = currentSeatNumber; // Almacenar el número de asiento
+
+                            // Marcar asientos como ocupados si están en la lista
+                            if (occupiedSeats.includes(currentSeatNumber)) {
+                                seatElement.classList.add('occupied');
+                            } else {
+                                // Añadir evento de clic solo a asientos disponibles
+                                seatElement.addEventListener('click', handleSeatClick);
+                            }
+
+                            seatMap.appendChild(seatElement);
+                            currentSeatNumber++; // Incrementar el número de asiento solo si se crea uno
+                        } else {
+                             // Si ya no hay más asientos pero necesitamos llenar la cuadrícula visualmente
+                             // Esto puede ocurrir si totalSeats no es un número que complete filas de 4 (menos el pasillo)
+                             // En un mapa real, esto no sería necesario si la estructura de datos es precisa.
+                             // Para esta simulación, simplemente no añadimos nada más si ya no hay asientos.
+                        }
+                    }
+                     gridCellCount++;
+                }
+            }
+             // Asegurar que el grid tenga 4 columnas
+             seatMap.style.gridTemplateColumns = `repeat(${visualSeatsPerRow}, 1fr)`;
+        }
+
+
+        // Maneja el clic en un asiento
+        function handleSeatClick(event) {
+            const clickedSeat = event.target;
+
+            // Si el asiento ya está ocupado, no hacer nada
+            if (clickedSeat.classList.contains('occupied')) {
+                return;
+            }
+
+            // Si ya hay un asiento seleccionado, deseleccionarlo
+            if (selectedSeat && selectedSeat !== clickedSeat) {
+                selectedSeat.classList.remove('selected');
+            }
+
+            // Alternar la selección del asiento clicado
+            clickedSeat.classList.toggle('selected');
+
+            // Actualizar la variable selectedSeat y el display
+            if (clickedSeat.classList.contains('selected')) {
+                selectedSeat = clickedSeat;
+                selectedSeatDisplay.textContent = clickedSeat.dataset.seatNumber;
+            } else {
+                selectedSeat = null;
+                selectedSeatDisplay.textContent = '-';
+            }
+        }
+
+        // --- Event Listeners ---
+
+        // Al hacer clic en el botón "Buscar Viaje"
+        searchButton.addEventListener('click', function() {
+            // Capturar los datos del formulario (simulado)
+            currentTripDetails = {
+                origin: originInput.value || 'Origen no especificado', // Usar valor del input o un default
+                destination: destinationInput.value || 'Destino no especificado',
+                date: dateInput.value || 'Fecha no especificada',
+                passengers: passengersSelect.value || '1',
+                seat: '-' // El asiento se seleccionará después
+            };
+
+            // Mostrar el modal de selección de asientos
+            showSeatModal();
+        });
+
+        // Al hacer clic en el botón de cerrar del modal de asientos, ocultarlo
+        closeModalButton.addEventListener('click', hideSeatModal);
+
+        // Opcional: Cerrar el modal de asientos si se hace clic fuera del contenido (en el overlay)
+        seatModalOverlay.addEventListener('click', function(event) {
+            if (event.target === seatModalOverlay) {
+                hideSeatModal();
+            }
+        });
+
+        // Al hacer clic en el botón de confirmar asiento
+        confirmSeatButton.addEventListener('click', function() {
+            if (selectedSeat) {
+                // Actualizar el asiento en los detalles del viaje
+                currentTripDetails.seat = selectedSeat.dataset.seatNumber;
+
+                // Ocultar el modal de asientos
+                hideSeatModal();
+
+                // Mostrar el modal de detalles de viaje con la información capturada
+                showTripDetailsModal(currentTripDetails);
+
+            } else {
+                alert('Por favor, selecciona un asiento.');
+            }
+        });
+
+        // Al hacer clic en el botón de cerrar del modal de detalles de viaje, ocultarlo
+        closeTripDetailsModalButton.addEventListener('click', hideTripDetailsModal);
+
+         // Opcional: Cerrar el modal de detalles de viaje si se hace clic fuera del contenido (en el overlay)
+        tripDetailsModalOverlay.addEventListener('click', function(event) {
+            if (event.target === tripDetailsModalOverlay) {
+                hideTripDetailsModal();
+            }
+        });
+
+        // Al hacer clic en el botón "Proceder al Pago" en el modal de detalles
+        purchaseButton.addEventListener('click', function() {
+             // Ocultar el modal de detalles
+             hideTripDetailsModal();
+             // Mostrar el modal de pago
+             showPaymentModal(currentTripDetails); // Pasar los detalles al modal de pago
+        });
+
+         // Al hacer clic en el botón de cerrar del modal de pago, ocultarlo
+        closePaymentModalButton.addEventListener('click', hidePaymentModal);
+
+         // Opcional: Cerrar el modal de pago si se hace clic fuera del contenido (en el overlay)
+        paymentModalOverlay.addEventListener('click', function(event) {
+            if (event.target === paymentModalOverlay) {
+                hidePaymentModal();
+            }
+        });
+
+
+        // Al hacer clic en el botón "Pagar Ahora" (simulación de pago)
+        payButton.addEventListener('click', function() {
+            // Aquí iría la lógica real de procesamiento de pago
+            // Como es una simulación, solo mostramos el modal de confirmación
+            hidePaymentModal(); // Ocultar el modal de pago
+            showConfirmationModal(); // Mostrar el modal de confirmación
+        });
+
+        // --- Event Listeners para el Modal de Confirmación ---
+        closeConfirmationModalButton.addEventListener('click', hideConfirmationModal);
+
+        confirmationModalOverlay.addEventListener('click', function(event) {
+            if (event.target === confirmationModalOverlay) {
+                hideConfirmationModal();
+            }
+        });
+
+        closeConfirmationButton.addEventListener('click', hideConfirmationModal);
+
+        // Simulación de botones de descarga y envío por correo
+        downloadTicketButton.addEventListener('click', function() {
+            alert('Simulando descarga de boleto para el viaje de ' + currentTripDetails.origin + ' a ' + currentTripDetails.destination + '. (Funcionalidad no implementada)');
+            // Aquí iría la lógica para generar o descargar un archivo (PDF, etc.)
+        });
+
+        emailTicketButton.addEventListener('click', function() {
+             const email = prompt('Por favor, ingresa tu correo electrónico para enviar el boleto:');
+             if (email) {
+                 alert('Simulando envío de boleto a ' + email + ' para el viaje de ' + currentTripDetails.origin + ' a ' + currentTripDetails.destination + '. (Funcionalidad no implementada)');
+                 // Aquí iría la lógica para enviar un correo electrónico con el boleto
+             } else {
+                 alert('Envío de correo cancelado.');
+             }
+        });
+
+
+    </script>
+
+</body>
+</html>
